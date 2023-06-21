@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider } from "../config/firebase";
+import { auth, googleProvider } from "../../config/firebase";
 import { signInWithPopup } from "firebase/auth"; 
-import googleImage from "../public/img/icon/icons8-google.svg";
+import googleImage from "../../public/img/icon/icons8-google.svg";
 export const GoogleLogin = () => {
     const navigate = useNavigate();
     const handleLoginByGoogle = async (e : any) => {
