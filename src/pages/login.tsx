@@ -1,10 +1,8 @@
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider } from "../config/firebase";
-import { GoogleLogin } from "../components/googleLogin";
-import { EmailLogin } from "../components/emailLogin";
+import { GoogleLogin } from "../components/auth/googleLogin";
+import { EmailLogin } from "../components/auth/emailLogin";
 import { Signup } from "./signup";
 export const Login = () => {
     const [email, setEmail] = useState("");

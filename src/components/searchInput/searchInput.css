@@ -1,0 +1,44 @@
+.search-wrapper{
+    width:500px;
+}
+
+#search-container {
+  padding: 6px 16px;
+  border-radius: 10px;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  background-color: #f0f3fa;
+  box-shadow: 1px 1px #dce2ee;
+  color: #6a6d78;
+  position: relative;
+}
+
+
+#search-container input {
+  border: none;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  font-size: 1.1rem;
+  margin-left: 5px;
+}
+
+#search-container input:focus {
+  outline: none;
+}
+
+
+@media screen and (max-width: 576px) {
+  /* CSS styles for mobile phones */
+ 
+}
+@media screen and (max-width: 768px) {
+  /* CSS styles for tablets */
+}
+@media screen and (max-width: 992px) {
+  /* CSS styles for laptops and desktops */
+}
+@media screen and (max-width: 1200px) {
+  /* CSS styles for large screens */
+}
