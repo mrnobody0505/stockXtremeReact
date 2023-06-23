@@ -2,37 +2,32 @@ import { fetchSignInMethodsForEmail, sendPasswordResetEmail } from 'firebase/aut
 import React, { useState } from 'react';
 import { auth } from '../config/firebase';
 import { Link } from 'react-router-dom';
+import { UserAuth } from '../context/authContext';
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [isSent, setIsSent] = useState(false);
+  const { isEmailRegistered } = UserAuth();
 
-  const isEmailRegistered = async (email: string) => {
-    try {
-      const userCredential = await fetchSignInMethodsForEmail(auth, email);
-      return userCredential.length > 0;
-    } catch (error) {
-      console.error('Error checking email:', error);
-      return false;
-    }
-  };
 
   const handleResetPassword = async (e: any) => {
     e.preventDefault();
-    const emailExist = isEmailRegistered(email);
-    if (!emailExist) {
-        setSuccessMessage("Email not found!");
-        return;
+    const emailExist = await isEmailRegistered(email);
+    console.log(emailExist);
+    if (emailExist) {
+      try {
+        await sendPasswordResetEmail(auth, email);
+        setSuccessMessage('Link to reset password has been sent to your email. Please check your inbox.');
+        setIsSent(true);
+      } catch (error: any) {
+        setErrorMessage(error.message);
+      }
+    } else {
+      setSuccessMessage("Email not found, try again");
     }
-    try {
-      await sendPasswordResetEmail(auth, email);
-      setSuccessMessage('Password reset email sent. Please check your inbox.');
-      setIsSent(true);
-    } catch (error: any) {
-      setErrorMessage(error.message);
-    }
+    
   };
 
   return (

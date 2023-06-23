@@ -16,7 +16,7 @@ export interface Stock {
 const SearchInput = () => {
   const [value, setValue] = useState("");
   const [allStocks, setAllStocks] = useState<Stock[]>([]);
-  const [filteredStocks, setFilteredStocks] = useState<String[]>([]);
+  const [filteredStocks, setFilteredStocks] = useState<Stock[]>([]);
   useEffect(() => {
     const fetchStockData = async () => {
       try {
@@ -44,8 +44,8 @@ const SearchInput = () => {
     setValue(val);
     const sorted = allStocks.filter((stock: Stock) => {
       return stock.symbol.startsWith(val.toUpperCase());
-    }).map(data => data.symbol + " ," + data.name);
-    setFilteredStocks(sorted)
+    })
+    setFilteredStocks(sorted);
   };
 
   return (

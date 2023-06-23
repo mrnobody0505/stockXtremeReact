@@ -1,13 +1,13 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { auth } from "../../config/firebase";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
+import { UserAuth } from "../../context/authContext";
 export const FormSignup = () => {
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
+  const { createUser, isEmailRegistered } = UserAuth();
   const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string()
@@ -23,21 +23,21 @@ export const FormSignup = () => {
     resolver: yupResolver(schema),
   });   
 
-  const isEmailRegistered = async (email) => {
-    try {
-      const userCredential = await fetchSignInMethodsForEmail(auth, email);
-      return userCredential.length > 0;
-    } catch (error) {
-      console.error('Error checking email:', error);
-      return false;
-    }
-  };
+  // const isEmailRegistered = async (email) => {
+  //   try {
+  //     const userCredential = await fetchSignInMethodsForEmail(auth, email);
+  //     return userCredential.length > 0;
+  //   } catch (error) {
+  //     console.error('Error checking email:', error);
+  //     return false;
+  //   }
+  // };
 
   const onSubmit = async (data) => {
     console.log(data);
     const check = await isEmailRegistered(data.email);
     if (!check) {
-        await createUserWithEmailAndPassword(auth, data.email, data.password);
+        await createUser(data.email, data.password);
         navigate("/home");
         console.log("success");
         setEmailError("");
@@ -55,7 +55,6 @@ export const FormSignup = () => {
         // onChange={(e) => setEmail(e.target.value)}
         {...register("email")}
       />
-      {emailError}
       <input
         type="password"
         placeholder="Password"

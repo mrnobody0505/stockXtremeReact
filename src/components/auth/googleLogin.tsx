@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import { auth, googleProvider } from "../../config/firebase";
-import { signInWithPopup } from "firebase/auth"; 
 import googleImage from "../../public/img/icon/icons8-google.svg";
+import { UserAuth } from "../../context/authContext";
 export const GoogleLogin = () => {
     const navigate = useNavigate();
+    const { googleLogin } = UserAuth();
     const handleLoginByGoogle = async (e : any) => {
         e.preventDefault();
         try {
-            const result = await signInWithPopup(auth, googleProvider);
+            const result = await googleLogin();
             navigate("/home");
         } catch (err) {
             console.log(err);
