@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { auth } from "../../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth"; 
+import { onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth"; 
+import { setUserId } from "firebase/analytics";
 export const EmailLogin = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleEmailLogin = async (e : any) => {
+    const [emailLoginUser, setEmailLoginUser] = useState({});
+    const handleEmailLogin = async (e) => {
         e.preventDefault();
         try {
             const result = await signInWithEmailAndPassword(auth, email, password);

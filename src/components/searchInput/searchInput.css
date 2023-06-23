@@ -28,6 +28,18 @@
   outline: none;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lora";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Lora",
+    monospace;
+}
 
 @media screen and (max-width: 576px) {
   /* CSS styles for mobile phones */

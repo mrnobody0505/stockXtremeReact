@@ -1,11 +1,13 @@
 import { fetchSignInMethodsForEmail, sendPasswordResetEmail } from 'firebase/auth';
 import React, { useState } from 'react';
 import { auth } from '../config/firebase';
+import { Link } from 'react-router-dom';
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isSent, setIsSent] = useState(false);
 
   const isEmailRegistered = async (email: string) => {
     try {
@@ -27,6 +29,7 @@ export const ForgotPassword = () => {
     try {
       await sendPasswordResetEmail(auth, email);
       setSuccessMessage('Password reset email sent. Please check your inbox.');
+      setIsSent(true);
     } catch (error: any) {
       setErrorMessage(error.message);
     }
@@ -43,7 +46,7 @@ export const ForgotPassword = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         {successMessage && <p>{successMessage}</p>}
-        <button type="submit">Reset Password</button>
+        {isSent ? <Link to="/">Redirect to Login page</Link> : <button type="submit">Reset Password</button>}
       </form>
     </div>
   );
