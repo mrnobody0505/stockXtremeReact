@@ -9,11 +9,15 @@
 }
 
 .search-item{
-    margin: 0px;
-    display: flex;
-    justify-content: space-around;
+    padding: 6px 0;
+    display: grid;
+    grid-template-columns: 1fr 3fr 2fr 1fr;
+    text-align: center;
 }   
 
+.search-item span img{
+    height: 20px;
+}
 .search-item:hover{
     background-color: #d1d4da;
     cursor: pointer;
