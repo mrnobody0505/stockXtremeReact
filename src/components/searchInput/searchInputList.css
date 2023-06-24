@@ -1,3 +1,4 @@
+
 #search-lists{
     list-style: none;
     padding: 0;
@@ -6,13 +7,17 @@
     top:80px;
     width: inherit;
     background-color: #f0f3fa;
+    border-radius: 10px;
+    box-shadow: 2px 4px #eff0f1;
 }
+
 
 .search-item{
     padding: 6px 0;
     display: grid;
     grid-template-columns: 1fr 3fr 2fr 1fr;
-    text-align: center;
+    text-align: left;
+    position: relative;
 }   
 
 .search-item span img{
@@ -21,4 +26,14 @@
 .search-item:hover{
     background-color: #d1d4da;
     cursor: pointer;
+}
+
+.country{
+    text-align: right;
+}
+
+.input-container{
+    display: flex;
+    position: absolute;
+    left: 100px;
 }
