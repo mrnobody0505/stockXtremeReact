@@ -1,7 +1,6 @@
 import pageLogo from "../../public/Logo and Poster/StockXtreme Logo.png";
 import userProfile from "../../public/img/icon/default-user-profile.png";
 import SearchInput from "../searchInput/searchInput";
-import HomeLink from "../../pages/home";
 import "./navbar.css";
 import { Link } from "react-router-dom";
 const Navbar = () => {

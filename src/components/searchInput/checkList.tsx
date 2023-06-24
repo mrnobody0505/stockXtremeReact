@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import UserPortfolio from './userPortfolio';
 
 interface StockItem {
   stockCode: string;
@@ -13,6 +14,7 @@ interface ChecklistProps {
 
 const Checklist: React.FC<ChecklistProps> = ({ handleItemClick }) => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
+  const [userPortfolio, setUserPortfolio] = useState<StockItem[]>([]);
 
   const existingComponents: StockItem[] = [
     { stockCode: 'AAPL', companyName: 'Apple', country: 'USA', stockType: 'Common Stock' },
@@ -24,8 +26,10 @@ const Checklist: React.FC<ChecklistProps> = ({ handleItemClick }) => {
   const handleItemToggle = (item: StockItem) => {
     if (selectedItems.includes(item.stockCode)) {
       setSelectedItems(selectedItems.filter((selectedItem) => selectedItem !== item.stockCode));
+      setUserPortfolio(userPortfolio.filter((portfolioItem) => portfolioItem.stockCode !== item.stockCode));
     } else {
       setSelectedItems([...selectedItems, item.stockCode]);
+      setUserPortfolio([...userPortfolio, item]);
     }
     handleItemClick(item);
   };
