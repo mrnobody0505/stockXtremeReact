@@ -44,6 +44,10 @@ const SearchInput = () => {
 
   const handleInput = (val: string) => {
     setValue(val);
+    const sorted = allStocks.filter((stock: Stock) => {
+      return stock.symbol.startsWith(val.toUpperCase());
+    })
+    setFilteredStocks(sorted);
   };
 
   const handleClickOutside = (event: MouseEvent) => {

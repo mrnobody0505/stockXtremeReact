@@ -2,11 +2,12 @@ import pageLogo from '../../public/Logo and Poster/StockXtreme Logo.png'
 import userProfile from '../../public/img/icon/default-user-profile.png'
 import SearchInput from '../searchInput/searchInput';
 import './navbar.css';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
     return (
         <nav>
             <div className='logo-container'>
-                <img src={pageLogo} alt="" />
+                <Link to="/home"><img src={pageLogo} alt="" /></Link>
             </div>
 
             <SearchInput />

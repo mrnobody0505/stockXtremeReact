@@ -1,20 +1,38 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { auth } from "../../config/firebase";
-import { signInWithEmailAndPassword } from "firebase/auth"; 
+import { useEffect, useState } from "react";
+import { UserAuth } from "../../context/authContext";
+
 export const EmailLogin = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const handleEmailLogin = async (e : any) => {
+    const [errorMessage, setErrorMessage] = useState("");
+    const { login } = UserAuth();
+    const handleEmailLogin = async (e) => {
         e.preventDefault();
         try {
-            const result = await signInWithEmailAndPassword(auth, email, password);
+            const result = await login(email, password);
             navigate("/home");
         } catch (err) {
             console.log(err);
+            setErrorMessage(getErrorMessage(err.message));
         }
     }
+
+    const getErrorMessage = (errorCode) => {
+        let errorMessage = '';  
+        switch (errorCode) {
+          case 'Firebase: Error (auth/wrong-password).':
+            errorMessage = 'Invalid password. Please try again.';
+            break;
+         // Add more cases for other error codes if needed
+          default:
+            errorMessage = 'An error occurred. Please try again.';
+            break;
+        }
+    
+        return errorMessage;
+      };
     return (
         <div>
             <form onSubmit={handleEmailLogin}>
@@ -32,6 +50,7 @@ export const EmailLogin = () => {
                 />
                 <button type="submit"> Login </button>
             </form> 
+            {errorMessage && <p>{errorMessage}</p>}
         </div>
     )
 } 
