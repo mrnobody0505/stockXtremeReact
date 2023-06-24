@@ -1,5 +1,5 @@
 import "./searchInput.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import SearchInputList from "./searchInputList";
 
@@ -17,6 +17,9 @@ const SearchInput = () => {
   const [value, setValue] = useState("");
   const [allStocks, setAllStocks] = useState<Stock[]>([]);
   const [filteredStocks, setFilteredStocks] = useState<Stock[]>([]);
+  const [isListVisible, setListVisible] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const fetchStockData = async () => {
       try {
@@ -32,25 +35,33 @@ const SearchInput = () => {
     fetchStockData();
   }, []);
 
-  // useEffect(() => {
-  //   const sorted =
-  //   allStocks.filter((stock: Stock) => {
-  //     return value && stock.symbol.startsWith(value.toUpperCase());
-  //   })
-  //   setFilteredStocks(sorted);
-  // },[value]);
+  useEffect(() => {
+    const sorted = allStocks.filter((stock: Stock) => {
+      return value && stock.symbol.startsWith(value.toUpperCase());
+    });
+    setFilteredStocks(sorted);
+  }, [value, allStocks]);
 
   const handleInput = (val: string) => {
     setValue(val);
-    const sorted = allStocks.filter((stock: Stock) => {
-      return stock.symbol.startsWith(val.toUpperCase());
-    });
-    setFilteredStocks(sorted)
   };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+      setListVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className="search-wrapper">
-      <div id="search-container">
+      <div id="search-container" ref={wrapperRef}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           height="1em"
@@ -63,13 +74,16 @@ const SearchInput = () => {
           value={value}
           onChange={(event) => {
             handleInput(event.target.value);
+            setListVisible(true);
           }}
           placeholder="Search"
         />
-        
       </div>
-      <SearchInputList stocks={filteredStocks}></SearchInputList>
+      {isListVisible && (
+        <SearchInputList stocks={filteredStocks}></SearchInputList>
+      )}
     </div>
   );
 };
+
 export default SearchInput;
