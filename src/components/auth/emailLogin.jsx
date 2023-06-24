@@ -6,7 +6,6 @@ export const EmailLogin = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
     const { login } = UserAuth();
     const handleEmailLogin = async (e) => {
         e.preventDefault();
@@ -15,24 +14,8 @@ export const EmailLogin = () => {
             navigate("/home");
         } catch (err) {
             console.log(err);
-            setErrorMessage(getErrorMessage(err.message));
         }
     }
-
-    const getErrorMessage = (errorCode) => {
-        let errorMessage = '';  
-        switch (errorCode) {
-          case 'Firebase: Error (auth/wrong-password).':
-            errorMessage = 'Invalid password. Please try again.';
-            break;
-         // Add more cases for other error codes if needed
-          default:
-            errorMessage = 'An error occurred. Please try again.';
-            break;
-        }
-    
-        return errorMessage;
-      };
     return (
         <div>
             <form onSubmit={handleEmailLogin}>
@@ -50,7 +33,6 @@ export const EmailLogin = () => {
                 />
                 <button type="submit"> Login </button>
             </form> 
-            {errorMessage && <p>{errorMessage}</p>}
         </div>
     )
 } 

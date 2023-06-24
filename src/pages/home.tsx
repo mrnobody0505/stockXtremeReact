@@ -11,7 +11,7 @@ interface StockItem {
   stockType: string;
 }
 
-export const Home = () => {
+const Home = () => {
   return (
     <div>
       <Navbar />
@@ -25,3 +25,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import Checklist from '../src/components/searchInput/checkList';
 import Portfolio from '../src/components/searchInput/userPortfolio';
 import Navbar from './components/navbar/navbar';
+import { BrowserRouter } from 'react-router-dom';
 
 interface StockItem {
   stockCode: string;
@@ -48,7 +49,10 @@ const App: React.FC = () => {
 
 ReactDOM.render(
   <React.StrictMode>
+    <BrowserRouter>
     <App />
+    
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
