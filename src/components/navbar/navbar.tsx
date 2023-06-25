@@ -8,7 +8,7 @@ const Navbar = () => {
     <div className="nav-wrapper">
       <nav>
         <div className="logo-container">
-          <Link to="../../pages/home">
+          <Link to="/home">
             <img src={pageLogo} alt="" />
           </Link>
         </div>

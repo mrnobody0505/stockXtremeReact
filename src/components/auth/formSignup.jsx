@@ -22,17 +22,6 @@ export const FormSignup = () => {
   const { register, handleSubmit, formState: {errors} } = useForm({
     resolver: yupResolver(schema),
   });   
-
-  // const isEmailRegistered = async (email) => {
-  //   try {
-  //     const userCredential = await fetchSignInMethodsForEmail(auth, email);
-  //     return userCredential.length > 0;
-  //   } catch (error) {
-  //     console.error('Error checking email:', error);
-  //     return false;
-  //   }
-  // };
-
   const onSubmit = async (data) => {
     console.log(data);
     const check = await isEmailRegistered(data.email);
@@ -51,23 +40,17 @@ export const FormSignup = () => {
       <input
         type="email"
         placeholder="Email"
-        // value={email}
-        // onChange={(e) => setEmail(e.target.value)}
         {...register("email")}
       />
       <input
         type="password"
         placeholder="Password"
-        // value={password}
-        // onChange={(e) => setPassword(e.target.value)}
         {...register("password")}
       />
       {errors.password?.message}
       <input
         type="password"
         placeholder="Confirm Password"
-        // value={cfPassword}
-        // onChange={(e) => setCfPassword(e.target.value)}
         {...register("confirmPassword")}
       />
       <button type="submit">Sign Up</button>

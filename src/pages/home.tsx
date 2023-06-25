@@ -31,11 +31,11 @@ export const Home = () => {
   return (
     <div>
       <Navbar />
+      <Checklist handleItemClick={handleItemClick} />
+      <UserPortfolio userPortfolio={userPortfolio} />
       <button>
         <Link to="/">Logout</Link>
       </button>
-      <Checklist handleItemClick={handleItemClick} />
-      <UserPortfolio userPortfolio={userPortfolio} />
     </div>
   );
 };
