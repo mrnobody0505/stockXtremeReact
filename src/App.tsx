@@ -28,7 +28,6 @@ function App() {
             }
           />
           </Routes>
-          <p>DJt me</p>
         </Router>
       </AuthContextProvider>
     </div>
