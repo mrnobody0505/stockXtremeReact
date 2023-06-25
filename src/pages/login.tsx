@@ -13,7 +13,7 @@ export const Login = () => {
             <h1>StockXtreme</h1>
             <EmailLogin />
             <GoogleLogin />
-            <div>Does not an account?</div>
+            <div>Does not have an account?</div>
             <Link to="/signup">Sign up here</Link>
             <div>Forgot Password?</div>
             <Link to="/forgotPassword">Reset here</Link>
