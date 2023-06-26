@@ -1,0 +1,34 @@
+#sign-up {
+    background-image: url('../../public/img/yiorgos-ntrahas-mcAUHlGirVs-unsplash.jpg');
+    background-size: cover ;
+    display: flex;
+    justify-content: center; /* Horizontally center the items */
+    align-items: center; /* Vertically center the items */
+    height: 100vh; /* Set the height of the container */
+  }
+  
+  
+  #sign-up-container {
+    width: 400px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #sign-up form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #sign-up h2{
+    display: flex;
+    justify-content: center;
+    color: darkblue;
+  }
+  /* Additional styles for form elements */
+  #sign-up input,
+  button {
+    margin: 10px 0; /* Add some spacing between elements */
+  }
+  

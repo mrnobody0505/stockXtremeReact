@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserAuth } from "../../context/authContext";
+import './formSignup.css'
+
 export const FormSignup = () => {
   const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
@@ -36,27 +38,32 @@ export const FormSignup = () => {
   };
   console.log(errors);
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <input
-        type="email"
-        placeholder="Email"
-        {...register("email")}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        {...register("password")}
-      />
-      {errors.password?.message}
-      <input
-        type="password"
-        placeholder="Confirm Password"
-        {...register("confirmPassword")}
-      />
-      <button type="submit">Sign Up</button>
-      {emailError}
-      {errors.password?.message}
-      {errors.confirmPassword?.message}
-    </form>
+    <div id="sign-up">
+      <div id="sign-up-container">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <h2>Create an account</h2>
+          <input
+            type="email"
+            placeholder="Email"
+            {...register("email")}
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            {...register("password")}
+          />
+          {errors.password?.message}
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            {...register("confirmPassword")}
+          />
+          <button type="submit">Sign Up</button>
+          {emailError}
+          {errors.password?.message}
+          {errors.confirmPassword?.message}
+        </form>
+      </div>
+    </div>
   );
 };
