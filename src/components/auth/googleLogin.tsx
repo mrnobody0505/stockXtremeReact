@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import googleImage from "../../public/img/icon/icons8-google.svg";
 import { UserAuth } from "../../context/authContext";
+import './googleLogin.css'
+
 export const GoogleLogin = () => {
     const navigate = useNavigate();
     const { googleLogin } = UserAuth();
@@ -14,8 +16,10 @@ export const GoogleLogin = () => {
         }
     }
     return (
-        <div>
-            <button onClick={handleLoginByGoogle}>Login with Google <img src={googleImage}/></button>
+        <div id="quick-login">
+            <button className="quick-login-options" onClick={handleLoginByGoogle}>
+                 <img src={googleImage}/> Login with Google
+            </button>
         </div>
     )
 } 

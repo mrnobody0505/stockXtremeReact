@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { auth } from '../config/firebase';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/authContext';
+import './forgotPassword.css'
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState('');
@@ -31,18 +32,22 @@ export const ForgotPassword = () => {
   };
 
   return (
-    <div>
-      <h2>Forgot Password</h2>
-      <form onSubmit={handleResetPassword}>
-        <input
-          type="email"
-          placeholder="Enter Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        {successMessage && <p>{successMessage}</p>}
-        {isSent ? <Link to="/">Redirect to Login page</Link> : <button type="submit">Reset Password</button>}
-      </form>
-    </div>
+      
+        <div id ="forgot-password">
+          <body>
+          <h1>Forgot Password</h1>
+          <form onSubmit={handleResetPassword}>
+            <input
+              type="email"
+              placeholder="Enter Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            {successMessage && <p>{successMessage}</p>}
+            {isSent ? <Link to="/">Redirect to Login page</Link> : <button type="submit"><h2>Reset Password</h2></button>}
+          </form>
+          </body>
+        </div>
+      
   );
 };

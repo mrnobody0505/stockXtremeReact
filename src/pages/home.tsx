@@ -34,7 +34,7 @@ export const Home = () => {
       <Checklist handleItemClick={handleItemClick} />
       <UserPortfolio userPortfolio={userPortfolio} />
       <button>
-        <Link to="/">Logout</Link>
+        <Link to="/"><h3 style={{ color: 'white' }}>Logout</h3></Link>
       </button>
     </div>
   );

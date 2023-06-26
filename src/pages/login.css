@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+  }
+  
+  main {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 0;
+    background-image: url('../public/img/fabrizio-conti-FoY_p4LoPSM-unsplash.jpg');
+    background-size: cover;
+    min-height: 100vh; /* Added min-height to fill the viewport height */
+  }
+  
+  main > img {
+    border-radius: 16px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  #log-in {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%; /* Added height to fill the parent container */
+  }
+  
+  #login {
+    margin: 0 auto;
+  }
+  
+  #logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: rgb(50, 50, 50);
+  }
+  
+  #logo img {
+    height: 10rem;
+  }
+  
+  #logo p {
+    margin: 0;
+  }
+  
+  #func {
+    align-items: center;
+    justify-content: center;
+    color: black;
+  }
+  
+  @media (max-width: 768px) {
+    main {
+      grid-template-columns: 1fr;
+    }
+    main > img {
+      display: none;
+    }
+  }
+
+  h3{
+    text-align: center;
+  }
+  
+  h4{
+    color: #0088ff;
+    text-align: center;
+  }

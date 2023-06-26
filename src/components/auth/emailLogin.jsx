@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { UserAuth } from "../../context/authContext";
+import './emailLogin.css'
 
 export const EmailLogin = () => {
     const navigate = useNavigate();
@@ -34,24 +35,25 @@ export const EmailLogin = () => {
         return errorMessage;
       };
 
-    return (
-        <div>
-            <form onSubmit={handleEmailLogin}>
+      return (
+        <div id ="email-login">
+            <form onSubmit={handleEmailLogin} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
                 <input
                     type="email"
                     placeholder="Email"
                     value={email}
                     onChange={(val) => setEmail(val.target.value)}
+                    style={{ marginBottom: "10px", padding: "5px" }}
                 />
                 <input
                     type="password"
                     placeholder="Password..."
                     value={password}
                     onChange={(val) => setPassword(val.target.value)}
+                    style={{ marginBottom: "10px", padding: "5px" }}
                 />
-                <button type="submit"> Login </button>
-            </form> 
-            {errorMessage && <p>{errorMessage}</p>}
+                <button type="submit" style={{ padding: "10px 20px" }}>Login</button>
+            </form>
         </div>
-    )
-} 
+    );
+};

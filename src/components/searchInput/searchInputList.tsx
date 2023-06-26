@@ -33,7 +33,7 @@ const SearchInputList = (props: aduma) => {
   };
   return (
     <ul id="search-lists">
-      {props.stocks.slice(0, 10).map((stock: Stock, index) => {
+      {props.stocks.slice(0, 15).map((stock: Stock, index) => {
         return (
           <li className="search-items-wrapper" key={index}>
             <div className="search-item">
