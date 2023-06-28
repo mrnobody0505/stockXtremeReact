@@ -1,71 +1,66 @@
-body {
-    margin: 0;
-    padding: 0;
-  }
-  
-  main {
-    display: grid;
-    grid-template-columns: 50% 50%;
-    margin: 0;
-    background-image: url('../public/img/fabrizio-conti-FoY_p4LoPSM-unsplash.jpg');
-    background-size: cover;
-    min-height: 100vh; /* Added min-height to fill the viewport height */
-  }
-  
-  main > img {
-    border-radius: 16px;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  #log-in {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%; /* Added height to fill the parent container */
-  }
-  
-  #login {
-    margin: 0 auto;
-  }
-  
-  #logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    color: rgb(50, 50, 50);
-  }
-  
-  #logo img {
-    height: 10rem;
-  }
-  
-  #logo p {
-    margin: 0;
-  }
-  
-  #func {
-    align-items: center;
-    justify-content: center;
-    color: black;
-  }
-  
-  @media (max-width: 768px) {
-    main {
-      grid-template-columns: 1fr;
-    }
-    main > img {
-      display: none;
-    }
-  }
+.main-login {
+  padding: 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 24px;
+  background: url('../public/img/fabrizio-conti-FoY_p4LoPSM-unsplash.jpg');
+}
 
-  h3{
-    text-align: center;
-  }
-  
-  h4{
-    color: #0088ff;
-    text-align: center;
-  }
+#logo {
+  display: block;
+  height: 100px;
+  text-align: center;
+}
+
+#logo > img {
+  height: 100%;
+}
+
+#side-img {
+  border-radius: 24px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#container {
+  width: 400px;
+  margin: 0 auto;
+  display: grid;
+  row-gap: 48px;
+}
+
+#or {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  color: #294957;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.16px;
+}
+
+#or::before,
+#or::after {
+  content: "";
+  display: block;
+  background: #cfdfe2;
+  width: 40%;
+  height: 1px;
+  margin: 0 10px;
+}
+
+#signup-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#signup-link{
+  margin-left: 8px;
+  color: #1E4AE9;
+  text-decoration: none;
+  text-align: end;
+}
