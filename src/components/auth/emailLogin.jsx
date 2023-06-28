@@ -4,7 +4,6 @@ import { UserAuth } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-
 export const EmailLogin = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -32,11 +31,11 @@ export const EmailLogin = () => {
       default:
         errorMessage = "An error occurred. Please try again.";
         break;
-      }
+    }
 
     return errorMessage;
   };
-  
+
   return (
     <form onSubmit={handleEmailLogin}>
       <FormContainer>
@@ -49,7 +48,7 @@ export const EmailLogin = () => {
               // value={email}
               onChange={(val) => setEmail(val.target.value)}
               id="email-input"
-              />
+            />
           </InputWrapper>
         </InputContainer>
         <InputContainer className="form-container">
@@ -61,7 +60,7 @@ export const EmailLogin = () => {
               // value={password}
               id="password-input"
               onChange={(val) => setPassword(val.target.value)}
-              />
+            />
           </InputWrapper>
         </InputContainer>
         <StyledLink id="forgot-password" to="/forgotPassword">
@@ -95,10 +94,19 @@ const Input = styled.input`
   width: 100%;
   border: none;
   font-size: 16px;
-  background-color:inherit;
+  background-color: white !important;
 
   &:focus {
     outline: none;
+  }
+
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover, 
+  &:-webkit-autofill:focus, 
+  &:-webkit-autofill:active {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    transition: background-color 5000s ease-in-out 0s !important;
   }
 `;
 
