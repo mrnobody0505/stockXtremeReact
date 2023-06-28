@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { auth } from '../config/firebase';
 import { Link } from 'react-router-dom';
 import { UserAuth } from '../context/authContext';
-import './forgotPassword.css'
 
 export const ForgotPassword = () => {
   const [email, setEmail] = useState('');
