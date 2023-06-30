@@ -17,7 +17,7 @@ export const AuthMain = styled.main`
   @media screen and (max-width:320px){
     padding: 8px;
   }
-  
+
 `;
 
 
