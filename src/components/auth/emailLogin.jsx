@@ -77,7 +77,6 @@ const FormContainer = styled.div`
 display: grid;
 grid-template-rows: 3fr 3fr 1fr 2fr;
 row-gap: 24px;
-onSubmit={handleEmailLogin}
 `;
 
 const InputContainer = styled.div``;
@@ -129,5 +128,4 @@ const StyledLink = styled(Link)`
 color: #1E4AE9;
 text-decoration: none;
 text-align: end;
-}
 `;

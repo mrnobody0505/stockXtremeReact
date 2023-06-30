@@ -43,13 +43,23 @@ const Main = styled.main`
   background: url("https://images.unsplash.com/photo-1517934274943-d1749ff2d7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80");
   background-repeat: no-repeat;
   background-size: cover;
+
+  @media screen and (max-width:900px){
+    grid-template-columns: 1fr;
+  }
 `;
+
 
 const SideImage = styled.img`
   border-radius: 24px;
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+
+  @media screen and (max-width:900px){
+    display:none;
+  }
 `;
 
 const FormContainer = styled.section`
@@ -57,13 +67,16 @@ const FormContainer = styled.section`
   margin: 0 auto;
   display: grid;
   row-gap: 48px;
+
+  @media screen and (max-width:500px){
+    width:300px;
+  }
 `;
 
 const LogoLink = styled(Link)`
   display: block;
   height: 100px;
   text-align: center;
-}
 `;
 
 const LogoImage = styled.img`
@@ -96,6 +109,10 @@ const SignupContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width:500px){
+    flex-direction:column;
+  }
 `;
 
 const SignupLink = styled(Link)`
