@@ -1,16 +1,39 @@
-import { createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+} from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FormSignup } from "../components/auth/formSignup";
+import FrontPageImg from "../public/img/login-side-img.jpg";
+import LogoImg from "../public/Logo and Poster/StockXtreme Logo.png";
+import {
+  AuthFormContainer,
+  AuthMain,
+  AuthSideImage,
+  AuthLogoLinkContainer,
+} from "../components/styles/auth/authPages";
 import { auth } from "../config/firebase";
+import styled from 'styled-components'
 export const Signup = () => {
-
-    return (
-        <div>
-            <FormSignup />
-        </div>
-    );
-    {/* // const [email, setEmail] = useState("");
+  return (
+    <AuthMain>
+      <div>
+        <AuthSideImage src={FrontPageImg} alt="" />
+      </div>
+      <AuthFormContainer>
+        <AuthLogoLinkContainer>
+          <Link to="/">
+            <img style={{ height: "100%" }} src={LogoImg} alt="" />
+          </Link>
+        </AuthLogoLinkContainer>
+        <PageTitle> Create new account</PageTitle>
+        <FormSignup />
+      </AuthFormContainer>
+    </AuthMain>
+  );
+  {
+    /* // const [email, setEmail] = useState("");
     // const [password, setPassword] = useState("");
     // const [cfPassword, setCfPassword] = useState("");
     // const [passwordMismatch, setPasswordMismatch] = useState(false);
@@ -75,5 +98,11 @@ export const Signup = () => {
     //         <div>Already have an account?</div>
     //         <Link to="/">Login here</Link>
     //     </div>
-    // ) */}
-}
+    // ) */
+  }
+};
+
+const PageTitle= styled.h1`
+    margin:0;
+    text-align: center;
+`
