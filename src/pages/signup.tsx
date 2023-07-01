@@ -12,25 +12,28 @@ import {
   AuthMain,
   AuthSideImage,
   AuthLogoLinkContainer,
+  AuthBg,
 } from "../components/styles/auth/authPages";
 import { auth } from "../config/firebase";
-import styled from 'styled-components'
+import styled from "styled-components";
 export const Signup = () => {
   return (
-    <AuthMain>
-      <div>
-        <AuthSideImage src={FrontPageImg} alt="" />
-      </div>
-      <AuthFormContainer>
-        <AuthLogoLinkContainer>
-          <Link to="/">
-            <img style={{ height: "100%" }} src={LogoImg} alt="" />
-          </Link>
-        </AuthLogoLinkContainer>
-        <PageTitle> Create new account</PageTitle>
-        <FormSignup />
-      </AuthFormContainer>
-    </AuthMain>
+    <AuthBg>
+      <AuthMain>
+        <div>
+          <AuthSideImage src={FrontPageImg} alt="" />
+        </div>
+        <AuthFormContainer>
+          <AuthLogoLinkContainer>
+            <Link to="/">
+              <img style={{ height: "100%" }} src={LogoImg} alt="" />
+            </Link>
+          </AuthLogoLinkContainer>
+          <PageTitle> Create new account</PageTitle>
+          <FormSignup />
+        </AuthFormContainer>
+      </AuthMain>
+    </AuthBg>
   );
   {
     /* // const [email, setEmail] = useState("");
@@ -102,7 +105,7 @@ export const Signup = () => {
   }
 };
 
-const PageTitle= styled.h1`
-    margin:0;
-    text-align: center;
-`
+const PageTitle = styled.h1`
+  margin: 0;
+  text-align: center;
+`;

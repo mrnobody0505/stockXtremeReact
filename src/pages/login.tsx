@@ -13,39 +13,42 @@ import {
   AuthFormContainer,
   AuthLogoLinkContainer,
   AuthSignupContainer,
+  AuthBg,
 } from "../components/styles/auth/authPages";
 import { AuthStyledLink } from "../components/styles/auth/auth";
 import { link } from "fs";
 
 export const Login = () => {
   return (
-    <AuthMain>
-      <div>
-        <AuthSideImage src={FrontPageImg} alt="" />
-      </div>
-      <AuthFormContainer>
-        <AuthLogoLinkContainer>
-          <Link to="/">
-            <img style={{ height: "100%" }} src={LogoImg} alt="" />
-          </Link>
-        </AuthLogoLinkContainer>
-        <EmailLogin />
+    <AuthBg>
+      <AuthMain>
         <div>
-          <OrSeperator>or</OrSeperator>
-          <GoogleLogin />
+          <AuthSideImage src={FrontPageImg} alt="" />
         </div>
-        <AuthSignupContainer>
-          <label>Don't you have an account?</label>
-          <AuthStyledLink
-            style={{ marginLeft: "20px" }}
-            to="/signup"
-            id="signup-link"
-          >
-            Sign up here
-          </AuthStyledLink>
-        </AuthSignupContainer>
-      </AuthFormContainer>
-    </AuthMain>
+        <AuthFormContainer>
+          <AuthLogoLinkContainer>
+            <Link to="/">
+              <img style={{ height: "100%" }} src={LogoImg} alt="" />
+            </Link>
+          </AuthLogoLinkContainer>
+          <EmailLogin />
+          <div>
+            <OrSeperator>or</OrSeperator>
+            <GoogleLogin />
+          </div>
+          <AuthSignupContainer>
+            <label>Don't you have an account?</label>
+            <AuthStyledLink
+              style={{ marginLeft: "20px" }}
+              to="/signup"
+              id="signup-link"
+            >
+              Sign up here
+            </AuthStyledLink>
+          </AuthSignupContainer>
+        </AuthFormContainer>
+      </AuthMain>
+    </AuthBg>
   );
 };
 

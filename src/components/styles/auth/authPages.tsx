@@ -1,13 +1,17 @@
 import styled from 'styled-components'
 import { Link } from "react-router-dom";
+export const AuthBg = styled.div`
+  height:100%;
+  background: url("https://images.unsplash.com/photo-1517934274943-d1749ff2d7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80");
+  background-repeat: no-repeat;
+  background-size: cover;
+`
 export const AuthMain = styled.main`
   padding: 32px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 24px;
-  background: url("https://images.unsplash.com/photo-1517934274943-d1749ff2d7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80");
-  background-repeat: no-repeat;
-  background-size: cover;
+  
 
   @media screen and (max-width:900px){
     grid-template-columns: 1fr;

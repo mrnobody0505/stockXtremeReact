@@ -11,6 +11,7 @@ import {
   AuthMain,
   AuthSideImage,
   AuthLogoLinkContainer,
+  AuthBg,
 } from "../components/styles/auth/authPages";
 import LogoImg from "../public/Logo and Poster/StockXtreme Logo.png";
 import FrontPageImg from "../public/img/login-side-img.jpg";
@@ -48,36 +49,38 @@ export const ForgotPassword = () => {
   };
 
   return (
-    <AuthMain>
-      <div>
-        <AuthSideImage src={FrontPageImg} alt="" />
-      </div>
-      <AuthFormContainer>
-        <AuthLogoLinkContainer>
-          <Link to="/">
-            <img style={{ height: "100%" }} src={LogoImg} alt="" />
-          </Link>
-        </AuthLogoLinkContainer>
-        <PageTitle> Forgot Password</PageTitle>
-        <form onSubmit={handleResetPassword}>
-          <FormWrapper>
-            <AuthInputWrapper>
-              <AuthInput
-                type="email"
-                placeholder="Enter Email"
-                // value={email}
-                onChange={(val: React.ChangeEvent<HTMLInputElement>) =>
-                  setEmail(val.target.value)
-                }
-              />
-            </AuthInputWrapper>
-            <AuthSubmitButton type="submit">Reset Password</AuthSubmitButton>
-            {successMessage && <p>{successMessage}</p>}
-            {isSent ? <Link to="/">Redirect to Login page</Link> : ""}
-          </FormWrapper>
-        </form>
-      </AuthFormContainer>
-    </AuthMain>
+    <AuthBg>
+      <AuthMain>
+        <div>
+          <AuthSideImage src={FrontPageImg} alt="" />
+        </div>
+        <AuthFormContainer>
+          <AuthLogoLinkContainer>
+            <Link to="/">
+              <img style={{ height: "100%" }} src={LogoImg} alt="" />
+            </Link>
+          </AuthLogoLinkContainer>
+          <PageTitle> Forgot Password</PageTitle>
+          <form onSubmit={handleResetPassword}>
+            <FormWrapper>
+              <AuthInputWrapper>
+                <AuthInput
+                  type="email"
+                  placeholder="Enter Email"
+                  // value={email}
+                  onChange={(val: React.ChangeEvent<HTMLInputElement>) =>
+                    setEmail(val.target.value)
+                  }
+                />
+              </AuthInputWrapper>
+              <AuthSubmitButton type="submit">Reset Password</AuthSubmitButton>
+              {successMessage && <p>{successMessage}</p>}
+              {isSent ? <Link to="/">Redirect to Login page</Link> : ""}
+            </FormWrapper>
+          </form>
+        </AuthFormContainer>
+      </AuthMain>
+    </AuthBg>
   );
 };
 
