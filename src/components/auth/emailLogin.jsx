@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { UserAuth } from "../../context/authContext";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { AuthInput,AuthInputWrapper,AuthSubmitButton,AuthStyledLink } from "../styles/auth/auth";
 
 export const EmailLogin = () => {
   const navigate = useNavigate();
@@ -38,94 +39,43 @@ export const EmailLogin = () => {
 
   return (
     <form onSubmit={handleEmailLogin}>
-      <FormContainer>
-        <InputContainer className="form-container">
+      <FormWrapper>
+        <div>
           <label htmlFor="email-input">Email</label>
-          <InputWrapper className="input-wrapper">
-            <Input
+          <AuthInputWrapper>
+            <AuthInput
               type="email"
               placeholder="Email"
               // value={email}
               onChange={(val) => setEmail(val.target.value)}
               id="email-input"
             />
-          </InputWrapper>
-        </InputContainer>
-        <InputContainer className="form-container">
+          </AuthInputWrapper>
+        </div>
+        <div>
           <label htmlFor="password-input">Password</label>
-          <InputWrapper className="input-wrapper">
-            <Input
+          <AuthInputWrapper>
+            <AuthInput
               type="password"
               placeholder="Password..."
               // value={password}
               id="password-input"
               onChange={(val) => setPassword(val.target.value)}
             />
-          </InputWrapper>
-        </InputContainer>
-        <StyledLink id="forgot-password" to="/forgotPassword">
+          </AuthInputWrapper>
+        </div>
+        <AuthStyledLink style={{textAlign:'end'}} id="forgot-password" to="/forgotPassword">
           Forgot Password ?
-        </StyledLink>
+        </AuthStyledLink>
 
-        <SubmitButton type="submit">Login</SubmitButton>
-      </FormContainer>
+        <AuthSubmitButton type="submit">Login</AuthSubmitButton>
+      </FormWrapper>
     </form>
   );
 };
 
-const FormContainer = styled.div`
+const FormWrapper = styled.div`
 display: grid;
 grid-template-rows: 3fr 3fr 1fr 2fr;
 row-gap: 24px;
-`;
-
-const InputContainer = styled.div``;
-
-const InputWrapper = styled.div`
-  margin-top: 8px;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid #d4d7e3;
-  background-color: white;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  border: none;
-  font-size: 16px;
-  background-color: white !important;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover, 
-  &:-webkit-autofill:focus, 
-  &:-webkit-autofill:active {
-    background-color: transparent !important;
-    -webkit-box-shadow: 0 0 0 50px white inset;
-    transition: background-color 5000s ease-in-out 0s !important;
-  }
-`;
-
-const SubmitButton = styled.button`
-  padding: 16px 0;
-  height: 52px;
-  border-radius: 12px;
-  background: #162d3a;
-  color: white;
-  font-size: 20px;
-  line-height: 100%;
-  letter-spacing: 0.2px;
-
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-const StyledLink = styled(Link)`
-color: #1E4AE9;
-text-decoration: none;
-text-align: end;
 `;
