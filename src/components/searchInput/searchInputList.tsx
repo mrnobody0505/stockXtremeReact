@@ -43,7 +43,7 @@ const SearchInputList = (props: aduma) => {
               <span  className="country">
                 <CircleFlag countryCode={findCountryCode(stock.country)} />
               </span>
-              
+          
             </div>
           </li>
         );
