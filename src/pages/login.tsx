@@ -4,19 +4,72 @@ import { useNavigate } from "react-router-dom";
 import { GoogleLogin } from "../components/auth/googleLogin";
 import { EmailLogin } from "../components/auth/emailLogin";
 import { Signup } from "./signup";
-export const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+import LogoImg from "../public/Logo and Poster/StockXtreme Logo.png";
+import FrontPageImg from "../public/img/login-side-img.jpg";
+import styled from "styled-components";
+import {
+  AuthMain,
+  AuthSideImage,
+  AuthFormContainer,
+  AuthLogoLinkContainer,
+  AuthSignupContainer,
+  AuthBg,
+} from "../components/styles/auth/authPages";
+import { AuthStyledLink } from "../components/styles/auth/auth";
+import { link } from "fs";
 
-    return (
+export const Login = () => {
+  return (
+    <AuthBg>
+      <AuthMain>
         <div>
-            <h1>StockXtreme</h1>
-            <EmailLogin />
-            <GoogleLogin />
-            <div>Does not have an account?</div>
-            <Link to="/signup">Sign up here</Link>
-            <div>Forgot Password?</div>
-            <Link to="/forgotPassword">Reset here</Link>
+          <AuthSideImage src={FrontPageImg} alt="" />
         </div>
-    );
-}
+        <AuthFormContainer>
+          <AuthLogoLinkContainer>
+            <Link to="/">
+              <img style={{ height: "100%" }} src={LogoImg} alt="" />
+            </Link>
+          </AuthLogoLinkContainer>
+          <EmailLogin />
+          <div>
+            <OrSeperator>or</OrSeperator>
+            <GoogleLogin />
+          </div>
+          <AuthSignupContainer>
+            <label>Don't you have an account?</label>
+            <AuthStyledLink
+              style={{ marginLeft: "20px" }}
+              to="/signup"
+              id="signup-link"
+            >
+              Sign up here
+            </AuthStyledLink>
+          </AuthSignupContainer>
+        </AuthFormContainer>
+      </AuthMain>
+    </AuthBg>
+  );
+};
+
+const OrSeperator = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+  color: #294957;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0.16px;
+
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    background: #cfdfe2;
+    width: 40%;
+    height: 1px;
+    margin: 0 10px;
+  }
+`;

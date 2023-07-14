@@ -1,0 +1,10 @@
+#check-list{
+    background-image: url('C:\Users\Khanh\Desktop\NUS_Khanh\2023 Summer\stockXtremeReact\src\public\img\fabrizio-conti-FoY_p4LoPSM-unsplash.jpg');
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;    
+}

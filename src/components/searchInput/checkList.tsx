@@ -35,7 +35,7 @@ const Checklist: React.FC<ChecklistProps> = ({ handleItemClick }) => {
   };
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div id="check-list" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
       <div>
         <h1>Existing Components</h1>
         <table>
