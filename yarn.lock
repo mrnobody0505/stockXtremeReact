@@ -5329,6 +5329,11 @@ fs.realpath@^1.0.0:
   resolved "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   integrity sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==
 
+fsevents@^2.3.2, fsevents@~2.3.2:
+  version "2.3.2"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
+  integrity sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==
+
 function-bind@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"
@@ -8363,7 +8368,7 @@ react-router@6.13.0:
   dependencies:
     "@remix-run/router" "1.6.3"
 
-react-scripts@5.0.1:
+react-scripts@^5.0.1:
   version "5.0.1"
   resolved "https://registry.npmjs.org/react-scripts/-/react-scripts-5.0.1.tgz"
   integrity sha512-8VAmEm/ZAwQzJ+GOMLbBsTdDKOpuZh7RPs0UymvBR2vRk4iZWCskjbFnxqjrzoIvlNNRZ3QJFx6/qDSi6zSnaQ==
@@ -9210,10 +9215,10 @@ style-loader@^3.3.1:
   resolved "https://registry.npmjs.org/style-loader/-/style-loader-3.3.3.tgz"
   integrity sha512-53BiGLXAcll9maCYtZi2RCQZKa8NQQai5C4horqKyRmHj9H7QmcUyucrH+4KW/gBQbXM2AsB0axoEcFZPlfPcw==
 
-styled-components@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.npmjs.org/styled-components/-/styled-components-6.0.0.tgz"
-  integrity sha512-OPraU50BgQ+cqiXmO9JnJiDP8N7gTB7Pzx9Yk6M+koZuzOvFf+Fd8ff6Qp57OnE65KAYO058IIWj+RWng3Cmiw==
+styled-components@^6.0.4:
+  version "6.0.4"
+  resolved "https://registry.npmjs.org/styled-components/-/styled-components-6.0.4.tgz"
+  integrity sha512-lRJt4vg8hKJhlVG+VKz8QEqPCXKyTryZZ59odyK0UC0HHV3u/mshWTfSay8NpkN0Xijw1iN9r0Leld3dcCcp/w==
   dependencies:
     "@babel/cli" "^7.21.0"
     "@babel/core" "^7.21.0"
