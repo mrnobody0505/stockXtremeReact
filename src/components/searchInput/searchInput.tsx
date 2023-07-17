@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import SearchInputList from "./searchInputList";
 
-export interface Stock {
+export type Stock = {
   symbol: string;
   name: string;
   currency: string;
@@ -83,9 +83,10 @@ const SearchInput = () => {
           placeholder="Search"
         />
       </div>
-      {isListVisible && (
+      <SearchInputList stocks={filteredStocks}></SearchInputList>
+      {/* {isListVisible && (
         <SearchInputList stocks={filteredStocks}></SearchInputList>
-      )}
+      )} */}
     </div>
   );
 };
