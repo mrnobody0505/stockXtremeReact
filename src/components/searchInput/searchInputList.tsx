@@ -46,9 +46,9 @@ const SearchInputList = (props: aduma) => {
                 <span>{shortenedContent(stock.symbol, 6)} </span>
                 <span>{shortenedContent(stock.name, 15)}</span>
                 <span>{shortenedContent(stock.type, 15)}</span>
-                <span className="country">
+                {/* <span className="country">
                   <CircleFlag countryCode={findCountryCode(stock.country)} />
-                </span>
+                </span> */}
               </div>
             </li>
           </Link>

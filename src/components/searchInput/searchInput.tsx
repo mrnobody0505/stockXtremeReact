@@ -11,28 +11,30 @@ export type Stock = {
   mic_code: string;
   country: string;
   type: string;
-  //Insert a button here
-}
+
+};
 
 const SearchInput = () => {
   const [value, setValue] = useState("");
   const [allStocks, setAllStocks] = useState<Stock[]>([]);
   const [filteredStocks, setFilteredStocks] = useState<Stock[]>([]);
   const [isListVisible, setListVisible] = useState(false);
+  const apiKey = "efc815ecdf7973429abcd4c791f93fe7";
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        const response = await axios
-          .get("https://api.twelvedata.com/stocks?source=docs")
-          .then((res) => res.data.data);
+        const response = await fetch(
+          "https://financialmodelingprep.com/api/v3/stock/list?apikey=" + apiKey
+        ).then((res) => res.json());
+        console.log(response);
         setAllStocks(response);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
-    
+
     fetchStockData();
   }, []);
 
@@ -47,12 +49,15 @@ const SearchInput = () => {
     setValue(val);
     const sorted = allStocks.filter((stock: Stock) => {
       return stock.symbol.startsWith(val.toUpperCase());
-    })
+    });
     setFilteredStocks(sorted);
   };
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+    if (
+      wrapperRef.current &&
+      !wrapperRef.current.contains(event.target as Node)
+    ) {
       setListVisible(false);
     }
   };
