@@ -32,7 +32,7 @@ const SearchInput = () => {
         console.error("Error fetching data:", error);
       }
     };
-
+    
     fetchStockData();
   }, []);
 
