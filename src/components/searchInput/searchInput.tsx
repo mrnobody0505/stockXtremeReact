@@ -11,6 +11,7 @@ export type Stock = {
   mic_code: string;
   country: string;
   type: string;
+
 };
 
 const SearchInput = () => {

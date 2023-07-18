@@ -1,41 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/navbar/navbar';
-import Checklist from '../components/searchInput/checkList';
-import UserPortfolio from '../components/searchInput/userPortfolio';
-import { Link } from 'react-router-dom';
-
-interface StockItem {
-  stockCode: string;
-  companyName: string;
-  country: string;
-  stockType: string;
-}
+import UserPortfolio, { StockItem } from '../components/searchInput/userPortfolio';
 
 export const Home = () => {
   const [userPortfolio, setUserPortfolio] = useState<StockItem[]>([]);
 
-  const handleItemClick = (item: StockItem): void => {
-    const existingItemIndex = userPortfolio.findIndex(
-      (portfolioItem) => portfolioItem.stockCode === item.stockCode
-    );
+  useEffect(() => {
+    const storedUserPortfolio = JSON.parse(localStorage.getItem('userPortfolio') || '[]');
+    setUserPortfolio(storedUserPortfolio);
+  }, []);
 
-    if (existingItemIndex !== -1) {
-      const updatedPortfolio = [...userPortfolio];
-      updatedPortfolio.splice(existingItemIndex, 1);
-      setUserPortfolio(updatedPortfolio);
-    } else {
-      setUserPortfolio([...userPortfolio, item]);
-    }
+  const removeFromPortfolio = (stock: StockItem) => {
+    const updatedPortfolio = userPortfolio.filter(
+      item => item.symbol !== stock.symbol || item.name !== stock.name
+    );
+    setUserPortfolio(updatedPortfolio);
+    localStorage.setItem('userPortfolio', JSON.stringify(updatedPortfolio));
   };
+  
 
   return (
-    <div>
+    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
       <Navbar />
-      <Checklist handleItemClick={handleItemClick} />
-      <UserPortfolio userPortfolio={userPortfolio} />
-      <button>
-        <Link to="/"><h3 style={{ color: 'white' }}>Logout</h3></Link>
-      </button>
+      <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <UserPortfolio userPortfolio={userPortfolio} onRemoveStock={removeFromPortfolio} />
+      </div>
     </div>
   );
 };
