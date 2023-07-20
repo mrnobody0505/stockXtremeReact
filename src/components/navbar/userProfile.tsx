@@ -49,6 +49,9 @@ const UserProfile = () => {
     <div>
       <h2>User Profile</h2>
       <div>
+        Welcome {firstName + " " + lastName}
+      </div>
+      <div>
         <label htmlFor="firstName">First Name:</label>
         <input
           type="text"

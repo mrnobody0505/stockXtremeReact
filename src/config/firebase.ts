@@ -16,7 +16,8 @@ const firebaseConfig = {
   storageBucket: "stockxtreme-64a07.appspot.com",
   messagingSenderId: "1035559916592",
   appId: "1:1035559916592:web:b0adcb71776b21e6b189f5",
-  measurementId: "G-V0XGKV3BVK"
+  measurementId: "G-V0XGKV3BVK",
+  databaseURL:"https://stockxtreme-64a07-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
