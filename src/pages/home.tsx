@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import UserPortfolio, { StockItem } from '../components/searchInput/userPortfolio';
+import UserProfile from '../components/navbar/userProfile'; // Import the UserProfile component
 
 export const Home = () => {
   const [userPortfolio, setUserPortfolio] = useState<StockItem[]>([]);
@@ -17,12 +19,11 @@ export const Home = () => {
     setUserPortfolio(updatedPortfolio);
     localStorage.setItem('userPortfolio', JSON.stringify(updatedPortfolio));
   };
-  
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <Navbar />
-      <div style={{ flex: 1, display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <UserPortfolio userPortfolio={userPortfolio} onRemoveStock={removeFromPortfolio} />
       </div>
     </div>
@@ -30,4 +31,3 @@ export const Home = () => {
 };
 
 export default Home;
-
