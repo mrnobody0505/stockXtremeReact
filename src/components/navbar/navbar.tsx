@@ -3,11 +3,18 @@ import pageLogo from "../../public/Logo and Poster/StockXtreme Logo.png";
 import userProfile from "../../public/img/icon/default-user-profile.png";
 import SearchInput from "../searchInput/searchInput";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, To, useNavigate } from 'react-router-dom';
 import { UserAuth } from "../../context/authContext";
+
 const Navbar = () => {
   const { logout } = UserAuth();
   const [userMenu, setUserMenu] = useState(false);
+  const navigate = useNavigate(); // Get the navigate function
+
+  const handleProfileClick = (route: To) => {
+    navigate(route); // Navigate to the specified route
+  };
+
   return (
     <div className="nav-wrapper">
       <nav>
@@ -20,8 +27,8 @@ const Navbar = () => {
         <SearchInput />
 
         <div style={{ position: "relative" }}>
-          <button
-            className="profile-container"
+          <button 
+            className="profile-container" 
             onClick={() => {
               setUserMenu(!userMenu);
             }}
@@ -30,7 +37,7 @@ const Navbar = () => {
           </button>
           {userMenu && (
             <div style={{position:"absolute",top:"50px",left:"0px"}}>
-              <button>Account</button>
+              <button onClick={() => handleProfileClick('/user-profile')}>Account</button>
               <button onClick={logout}>Log out</button>
             </div>
           )}
@@ -39,4 +46,5 @@ const Navbar = () => {
     </div>
   );
 };
+
 export default Navbar;

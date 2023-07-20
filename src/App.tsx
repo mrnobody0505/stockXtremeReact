@@ -9,6 +9,7 @@ import { SuccessfulSignup } from "./pages/successfulSignup";
 import { AuthContextProvider } from "./context/authContext";
 import { ProtectedRoute } from "./components/auth/protectedRoute";
 import { StockDetails } from "./pages/stockDetails";
+import UserProfile from "./components/navbar/userProfile";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             />
             <Route path="/stocks/:stock" element={<StockDetails />}>
             </Route>
+            <Route path="/user-profile" element={<UserProfile />} />
           </Routes>
         </Router>
       </AuthContextProvider>
