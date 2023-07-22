@@ -25,18 +25,18 @@ export const StockFinancials = ({ symbol }) => {
   }, [symbol]);
 
   const headers = ["Date", "Revenue", "Cost of Revenue", "Gross Profit", "Operating Income", "Net Income"];
-  const percentage = (profile.changes / profile.price) * 100;
+  const percentage = Math.round((profile.changes / profile.price) * 100 * 100) / 100;
   const mktCap = profile.mktCap;
   const volAvg = profile.volAvg;
-  const beta = profile.beta;
+  const beta = Math.round(profile.beta * 100) / 100;
   const changes = profile.changes;
   const range = profile.range;
   const industry = profile.industry;
-  const roe = ratios.returnOnEquityTTM * 100;
-  const roa = ratios.returnOnAssetsTTM * 100;
-  const operatingMargin = ratios.operatingProfitMarginTTM * 100;
-  const peRatio = ratios.peRatioTTM;
-  const pbRatio = ratios.priceBookValueRatioTTM;
+  const roe = Math.round(ratios.returnOnEquityTTM * 100 * 100) / 100;
+  const roa = Math.round(ratios.returnOnAssetsTTM * 100 * 100) / 100;
+  const operatingMargin = Math.round(ratios.operatingProfitMarginTTM * 100 * 100) / 100;
+  const peRatio = Math.round(ratios.peRatioTTM * 100) / 100;
+  const pbRatio = Math.round(ratios.priceBookValueRatioTTM * 100) / 100;
   return (
     <div>
       {console.log(companyOutlook)}
@@ -44,16 +44,16 @@ export const StockFinancials = ({ symbol }) => {
           <div>
           <h2>Company Outlook for {symbol}</h2>
           <p>Industry: {industry}</p>
-          <p>Market Cap: {mktCap}</p>
-          <p>Volume Average: {volAvg}</p>
+          <p>Market Cap: {mktCap}$</p>
+          <p>Volume Average: {volAvg}$</p>
           <p>Beta: {beta}</p>
-          <p>Changes: {changes} ({percentage.toFixed(2)}%)</p>
+          <p>Changes: {changes} ({percentage}%)</p>
           <p>Range: {range}</p>
-          <p>ROE: {roe.toFixed(2)}%</p>
-          <p>ROA: {roa.toFixed(2)}%</p>
-          <p>Operating Margin: {operatingMargin.toFixed(2)}%</p>
-          <p>P/E: {peRatio.toFixed(2)}</p>
-          <p>P/B: {pbRatio.toFixed(2)}</p>
+          <p>ROE: {roe}%</p>
+          <p>ROA: {roa}%</p>
+          <p>Operating Margin: {operatingMargin}%</p>
+          <p>P/E: {peRatio}</p>
+          <p>P/B: {pbRatio}</p>
           {/* Add other company outlook metrics here */}
         </div>
       ) : (
