@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { updateProfile } from 'firebase/auth';
-import { UserAuth } from '../../context/authContext';
+import React, { useEffect, useState } from "react";
+import Navbar from "./navbar";
+import { updateProfile } from "firebase/auth";
+import { UserAuth } from "../../context/authContext";
 import { onValue, ref, set } from "firebase/database";
-import { db } from '../../config/firebase'; // Import the db instance from the firebase.ts file
+import { db } from "../../config/firebase"; // Import the db instance from the firebase.ts file
 
 const UserProfile = () => {
   const { user } = UserAuth();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [gender, setGender] = useState('');
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [gender, setGender] = useState("");
+  const [active, setActive] = useState(false);
+  const [balance, setBalance] = useState(0);
 
   useEffect(() => {
     if (user) {
@@ -17,9 +20,10 @@ const UserProfile = () => {
       onValue(userDatabaseRef, (snapshot) => {
         if (snapshot.exists()) {
           const profileData = snapshot.val();
-          setFirstName(profileData.firstName || '');
-          setLastName(profileData.lastName || '');
-          setGender(profileData.gender || '');
+          setFirstName(profileData.firstName || "");
+          setLastName(profileData.lastName || "");
+          setGender(profileData.gender || "");
+          setBalance(profileData.balance || " ");
         }
       });
     }
@@ -29,56 +33,82 @@ const UserProfile = () => {
     try {
       await updateProfile(user, {
         displayName: `${firstName} ${lastName}`,
-        photoURL: null
+        photoURL: null,
       });
 
       const userDatabaseRef = ref(db, `users/${user.uid}`);
       await set(userDatabaseRef, {
         firstName,
         lastName,
-        gender
+        gender,
+        balance,
       });
 
-      console.log('Profile updated successfully!');
+      console.log("Profile updated successfully!");
     } catch (error) {
-      console.error('Error updating profile:', error);
+      console.error("Error updating profile:", error);
     }
   };
 
   return (
     <div>
+      <Navbar></Navbar>
       <h2>User Profile</h2>
-      <div>
-        Welcome {firstName + " " + lastName}
-      </div>
-      <div>
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          type="text"
-          id="firstName"
-          value={firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="lastName">Last Name:</label>
-        <input
-          type="text"
-          id="lastName"
-          value={lastName}
-          onChange={(e) => setLastName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="gender">Gender:</label>
-        <input
-          type="text"
-          id="gender"
-          value={gender}
-          onChange={(e) => setGender(e.target.value)}
-        />
-      </div>
-      <button onClick={handleUpdateProfile}>Update Profile</button>
+      {!active && <div>
+        <p>Welcome {firstName + " " + lastName}</p>
+        <p>Your balance is {balance}</p>
+      </div>}
+      {active && (
+        <div>
+          <div>
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              placeholder={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              placeholder={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="gender">Gender:</label>
+            <input
+              type="text"
+              id="gender"
+              placeholder={gender}
+              onChange={(e) => setGender(e.target.value)}
+            />
+          </div>
+          <div>
+            <label htmlFor="balance">Balance:</label>
+            <input
+              type="number"
+              id="balance"
+              placeholder={balance.toString()}
+              onChange={(e) => setBalance(+e.target.value)}
+            />
+          </div>
+        </div>
+      )}
+      <button
+        onClick={() => {
+          // handleUpdateProfile;
+          setActive(!active);
+          if (active) {
+            handleUpdateProfile();
+          }
+        }}
+      >
+        Update Profile
+      </button>
     </div>
   );
 };
