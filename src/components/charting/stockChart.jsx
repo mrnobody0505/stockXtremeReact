@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createChart } from "lightweight-charts";
+import axios from "axios";
 
 const StockChart = ({ apiKey, symbol }) => {
   const chartContainerRef = useRef(null);
@@ -9,8 +10,8 @@ const StockChart = ({ apiKey, symbol }) => {
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        const response = await fetch(apiLink);
-        const data = await response.json();
+        const response = await axios.get(apiLink);
+        const data = response.data;
         const stockData = data.historical.map((item) => ({
           time: Math.floor(new Date(item.date).getTime() / 1000),
           open: item.open,

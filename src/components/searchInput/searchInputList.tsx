@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import { Countries } from "../../data/countries";
 import { Link } from "react-router-dom";
 
-interface aduma {
+interface Stocks {
   stocks: Stock[];
 }
-const SearchInputList = (props: aduma) => {
+const SearchInputList = (props: Stocks) => {
   //  return <p>{props.stocks}</p>
   const shortenedContent = (s: string, maxCharacter: number) => {
     if (s.length > maxCharacter) {
@@ -45,7 +45,7 @@ const SearchInputList = (props: aduma) => {
               <div className="search-item">
                 <span>{shortenedContent(stock.symbol, 6)} </span>
                 <span>{shortenedContent(stock.name, 15)}</span>
-                <span>{shortenedContent(stock.type, 15)}</span>
+                <span>{shortenedContent(stock.exchangeShortName, 15)}</span>
                 {/* <span className="country">
                   <CircleFlag countryCode={findCountryCode(stock.country)} />
                 </span> */}

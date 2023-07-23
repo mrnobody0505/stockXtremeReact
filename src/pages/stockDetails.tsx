@@ -2,7 +2,9 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { Stock } from "../components/searchInput/searchInput"
 import StockChart from "../components/charting/stockChart";
 import React, { useState } from 'react';
-
+import RealTimeStockPrice from "../components/stock/realTimeStockPrice/realTimeStockPrice";
+import { StockNews } from "../components/stock/stockNews/stockNews";
+import { StockFinancials } from "../components/stock/stockFinancials/stockFinancials";
 export const StockDetails = () => {
     const location = useLocation();
     const stockInfo = location.state.stock;
@@ -10,17 +12,24 @@ export const StockDetails = () => {
     const navigate = useNavigate();
     //const country = stockInfo.country;
     const symbol = stockInfo.symbol;
-    const apiKey = "efc815ecdf7973429abcd4c791f93fe7"
+    const apiKey = process.env.REACT_APP_API_KEY;
     const addToPortfolio = () => {
       const userPortfolio = JSON.parse(localStorage.getItem('userPortfolio') || '[]');
       userPortfolio.push(stockInfo);
       localStorage.setItem('userPortfolio', JSON.stringify(userPortfolio));
       setAddedToPortfolio(true);
   };
+    const companyImageURL = "financialmodelingprep.com/image-stock/" + symbol + ".png";
+
     return (
       <div style={{ width: '100%' }}>
-        <h1>{symbol}</h1>
+        {/* <img src={companyImageURL}/> */}
+        <h1>{stockInfo.name}</h1>
+        <RealTimeStockPrice symbol={symbol}/>
+        {stockInfo.exchangeShortName}
         <StockChart apiKey={apiKey} symbol={symbol} />
+        <StockNews symbol={symbol} />
+        <StockFinancials symbol={symbol} />
         {!addedToPortfolio && <button onClick={addToPortfolio}>Add to User Portfolio</button>}
         <button onClick={() => navigate('/home')}>Go to Home</button>
       </div>

@@ -8,6 +8,7 @@ export type Stock = {
   name: string;
   currency: string;
   exchange: string;
+  exchangeShortName: string;
   mic_code: string;
   country: string;
   type: string;
@@ -19,15 +20,14 @@ const SearchInput = () => {
   const [allStocks, setAllStocks] = useState<Stock[]>([]);
   const [filteredStocks, setFilteredStocks] = useState<Stock[]>([]);
   const [isListVisible, setListVisible] = useState(false);
-  const apiKey = "efc815ecdf7973429abcd4c791f93fe7";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const wrapperRef = useRef<HTMLDivElement>(null);
+  const apiLink =  "https://financialmodelingprep.com/api/v3/stock/list?apikey=" + apiKey;
 
   useEffect(() => {
     const fetchStockData = async () => {
       try {
-        const response = await fetch(
-          "https://financialmodelingprep.com/api/v3/stock/list?apikey=" + apiKey
-        ).then((res) => res.json());
+        const response = await axios.get(apiLink).then((res) => res.data);
         console.log(response);
         setAllStocks(response);
       } catch (error) {
