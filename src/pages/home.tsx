@@ -24,7 +24,7 @@ export const Home = () => {
     <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <Navbar />
       <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-        <UserPortfolio userPortfolio={userPortfolio} onRemoveStock={removeFromPortfolio} />
+        <UserPortfolio />
       </div>
     </div>
   );

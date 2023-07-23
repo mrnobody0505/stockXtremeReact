@@ -12,7 +12,7 @@ interface Stocks {
 const SearchInputList = (props: Stocks) => {
   //  return <p>{props.stocks}</p>
   const shortenedContent = (s: string, maxCharacter: number) => {
-    if (s.length > maxCharacter) {
+    if (s?.length > maxCharacter) {
       return s.slice(0, maxCharacter) + "..";
     } else {
       return s;
