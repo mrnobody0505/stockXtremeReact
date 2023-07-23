@@ -20,16 +20,26 @@ export const StockDetails = () => {
   const [activeInput, setActiveInput] = useState(false);
   const navigate = useNavigate();
   const [stockItems, setStockItems] = useState<StockItem[]>([]);
-  const [profileData,setProfileData] = useState<Profile>({
-    firstName:"",
-    lastName:"",
-    gender:"",
-    balance:0,
-    stockItems:[]
+  const [profileData, setProfileData] = useState<Profile>({
+    firstName: "",
+    lastName: "",
+    gender: "",
+    balance: 0,
+    stockItems: [],
   });
+  function isStockExisted() {
+    return stockItems.find((item) => {
+      return (
+        item.name === stock.name &&
+        item.symbol === stock.symbol &&
+        item.type === stock.type
+      );
+    });
+  }
   //const country = stockInfo.country;
   const symbol = stockInfo.symbol;
   const apiKey = process.env.REACT_APP_API_KEY;
+
   const handleAddBtn = () => {
     // const userPortfolio = JSON.parse(localStorage.getItem('userPortfolio') || '[]');
     // userPortfolio.push(stockInfo);
@@ -40,12 +50,12 @@ export const StockDetails = () => {
   const companyImageURL =
     "financialmodelingprep.com/image-stock/" + symbol + ".png";
 
-  interface Profile{
-    firstName:string,
-    lastName:string,
-    gender:string,
-    balance:number,
-    stockItems:StockItem[];
+  interface Profile {
+    firstName: string;
+    lastName: string;
+    gender: string;
+    balance: number;
+    stockItems: StockItem[];
   }
   let stock: StockItem = {
     name: stockInfo.name,
@@ -55,34 +65,56 @@ export const StockDetails = () => {
   };
 
   useEffect(() => {
+    console.log("profile");
+    console.log(profileData);
+  }, [profileData]);
+
+  useEffect(() => {
+    console.log("stockItems");
+    console.log(stockItems);
+  }, [stockItems]);
+  useEffect(() => {
     if (user) {
       // Fetch user profile data from Firebase Realtime Database
       const userDatabaseRef = ref(db, `users/${user.uid}`);
       onValue(userDatabaseRef, (snapshot) => {
         if (snapshot.exists()) {
-          setProfileData(snapshot.val());
-          if (!profileData.hasOwnProperty('stockItems')){
-            profileData.stockItems = [];
+          const profile = snapshot.val();
+          console.log(profile);
+          if (!profile.hasOwnProperty("stockItems")) {
+            console.log("lam gi co");
+            profile.stockItems = [];
+            setStockItems([]);
           }
-          setStockItems(profileData.stockItems);
+          setProfileData(profile);
         }
       });
     }
   }, [user]);
   const handleUpdatePortfolio = async () => {
-    console.log(stockItems)
-    setStockItems((prevStockItems) => {
-      return {...prevStockItems,stock}
-    })
+    console.log("a");
+    console.log(isStockExisted());
+    let newStockItems: StockItem[];
+    let foundStock = isStockExisted();
+    if (!foundStock) {
+      setStockItems([...stockItems, stock]);
+    } else {
+      setStockItems(stockItems.filter((item) => item !== foundStock));
+      foundStock = {
+        ...foundStock,
+        volume: foundStock.volume + volume,
+      };
+      setStockItems([...stockItems, foundStock]);
+    }
+    setProfileData((prev) => {
+      return { ...prev, stockItems: stockItems };
+    });
     try {
       const userDatabaseRef = ref(db, `users/${user.uid}`);
-      setProfileData(profileData => {
-        return {...profileData,stockItems:stockItems}
-      })
       await set(userDatabaseRef, profileData);
-      console.log("Profile updated successfully!");
+      console.log("StockItems updated successfully!");
     } catch (error) {
-      console.error("Error updating profile:", error);
+      console.error("Error updating stockItems:", error);
     }
   };
 
@@ -95,7 +127,7 @@ export const StockDetails = () => {
       <StockChart apiKey={apiKey} symbol={symbol} />
       <StockNews symbol={symbol} />
       <StockFinancials symbol={symbol} />
-      <div>current volume: 0</div>
+      <p>current stocks: {isStockExisted()?.volume ?? 0}</p>
       {!addedToPortfolio && (
         <div>
           <button
