@@ -11,6 +11,7 @@ import { UserAuth } from "../context/authContext";
 import { StockItem } from "../components/searchInput/userPortfolio";
 import { number } from "yup";
 import { Type } from "typescript";
+
 export const StockDetails = () => {
   const { user } = UserAuth();
   const location = useLocation();
@@ -119,65 +120,60 @@ export const StockDetails = () => {
   };
 
   return (
-    <div style={{ width: "100%" }}>
-      {/* <img src={companyImageURL}/> */}
-      <h1>{stockInfo.name}</h1>
-      <RealTimeStockPrice symbol={symbol} />
-      {stockInfo.exchangeShortName}
-      <StockChart apiKey={apiKey} symbol={symbol} />
-      <StockNews symbol={symbol} />
-      <StockFinancials symbol={symbol} />
-      <p>current stocks: {isStockExisted()?.volume ?? 0}</p>
-      {!addedToPortfolio && (
-        <div>
-          <button
-            onClick={() => {
-              setActiveInput(true);
-              if (activeInput) {
-                if (volume > 0 && volume % 1 === 0) {
-                  console.log("about to push");
-                  handleUpdatePortfolio();
-                } else {
-                  console.log("nah");
-                }
-              }
-            }}
-          >
-            Add to User Portfolio
-          </button>
-          {activeInput && (
-            <div>
-              <label htmlFor="volume">Volume</label>
-              <button
-                onClick={() => {
-                  setVolume(volume + 1);
-                }}
-              >
-                +
-              </button>
-              <input
-                type="number"
-                name=""
-                id="volume"
-                value={volume.toString()}
-                min={0}
-                style={{ border: "1px solid black" }}
-                onChange={(e) => setVolume(Math.max(+e.target.value, 0))}
-              />
-              <button
-                onClick={() => {
-                  setVolume(Math.max(volume - 1, 0));
-                }}
-              >
-                -
-              </button>
-            </div>
-          )}
-        </div>
-      )}
-      <button onClick={() => navigate("/home")}>Go to Home</button>
+    <div style={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
+  {/* <img src={companyImageURL}/> */}
+  <h1 style={{ fontSize: "28px", fontWeight: "bold", marginBottom: "10px" }}>{stockInfo.name}</h1>
+  <RealTimeStockPrice symbol={symbol} />
+  <p style={{ fontSize: "16px", color: "#888" }}>{stockInfo.exchangeShortName}</p>
+  <StockChart apiKey={apiKey} symbol={symbol} />
+  <StockNews symbol={symbol} />
+  <StockFinancials symbol={symbol} />
+  <p style={{ fontSize: "16px" }}>current stocks: {isStockExisted()?.volume ?? 0}</p>
+  {!addedToPortfolio && (
+    <button
+      className="add-to-portfolio-btn"
+      style={{ marginTop: "10px", padding: "10px 20px", fontSize: "16px", backgroundColor: "#ff0000", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}
+      onClick={() => {
+        setActiveInput(true);
+        if (activeInput) {
+          if (volume > 0 && volume % 1 === 0) {
+            console.log("about to push");
+            handleUpdatePortfolio();
+          } else {
+            console.log("nah");
+          }
+        }
+      }}
+    >
+      Add to User Portfolio
+    </button>
+  )}
+  {activeInput && (
+    <div style={{ display: "flex", alignItems: "center", marginTop: "10px" }}>
+      <label htmlFor="volume" style={{ fontSize: "16px", marginRight: "10px" }}>Volume</label>
+      <button style={{ padding: "5px 10px", fontSize: "16px", backgroundColor: "#f0f0f0", border: "none", cursor: "pointer" }} onClick={() => setVolume(volume + 1)}>+</button>
+      <input
+        type="number"
+        name=""
+        id="volume"
+        value={volume.toString()}
+        min={0}
+        style={{ width: "80px", fontSize: "16px", textAlign: "center", border: "1px solid #ddd", borderRadius: "5px", padding: "5px" }}
+        onChange={(e) => setVolume(Math.max(+e.target.value, 0))}
+      />
+      <button style={{ padding: "5px 10px", fontSize: "16px", backgroundColor: "#f0f0f0", border: "none", cursor: "pointer" }} onClick={() => setVolume(Math.max(volume - 1, 0))}>-</button>
     </div>
+  )}
+  <button
+    className="go-to-home-btn"
+    style={{ marginTop: "10px", padding: "10px 20px", fontSize: "16px", backgroundColor: "#0000ff", color: "#fff", border: "none", borderRadius: "5px", cursor: "pointer" }}
+    onClick={() => navigate("/home")}
+  >
+    Go to Home
+  </button>
+</div>
   );
+}
   // const currency = stockInfo.currency;
   // const exchange = stockInfo.exchange;
   // const micCode = stockInfo.mic_code;
@@ -194,7 +190,6 @@ export const StockDetails = () => {
   //         <p>{name}</p>
   //     </div>
   // )
-};
 
 // import React, { useState } from 'react';
 // import { useLocation, useNavigate } from 'react-router-dom';

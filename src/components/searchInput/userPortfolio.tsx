@@ -28,9 +28,9 @@ interface UserPortfolioProps {
 // </div>
 
 const UserPortfolio = () => {
-  return (<div>
+  return (<h2>
     User portfolio
-  </div>)
+  </h2>)
 }
 ;
 

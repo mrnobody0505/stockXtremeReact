@@ -51,8 +51,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div>
-      <Navbar></Navbar>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <h2>User Profile</h2>
       {!active && <div>
         <p>Welcome {firstName + " " + lastName}</p>
@@ -99,15 +98,15 @@ const UserProfile = () => {
         </div>
       )}
       <button
+        style={{ marginTop: '10px', background: 'darkblue', color: 'white', fontSize: '16px', padding: '12px 24px', borderRadius: '8px' }}
         onClick={() => {
-          // handleUpdateProfile;
           setActive(!active);
           if (active) {
             handleUpdateProfile();
           }
         }}
       >
-        Update Profile
+        {active ? 'Save Profile' : 'Update Profile'}
       </button>
     </div>
   );
