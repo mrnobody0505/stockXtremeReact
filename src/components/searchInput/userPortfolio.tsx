@@ -49,7 +49,7 @@ const UserPortfolio = () => {
 
   return (
     <div>
-      <h2>User portfolio</h2>
+      <h2 style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>My portfolio</h2>
       {userPortfolio != null ? userPortfolio.map((item) => {
         return (
           <div>{item.symbol} - {item.name} - {item.type} - {item.volume}</div>

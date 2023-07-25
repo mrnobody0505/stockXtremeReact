@@ -28,12 +28,12 @@ export const Home = () => {
       <div style={{ flex: 1, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <UserPortfolio />
       </div>
-      <button
+      {/* <button
         onClick={() => navigate('/')}
         style={{ background: 'darkblue', color: 'white', fontSize: '14px', padding: '8px 16px', borderRadius: '4px' }}
       >
         Log out
-      </button>
+      </button> */}
     </div>
   );
 };
