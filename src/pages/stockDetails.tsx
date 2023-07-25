@@ -12,6 +12,7 @@ import { StockItem } from "../components/searchInput/userPortfolio";
 import { number } from "yup";
 import { Type } from "typescript";
 
+
 export const StockDetails = () => {
   const { user } = UserAuth();
   const location = useLocation();
@@ -21,6 +22,7 @@ export const StockDetails = () => {
   const [activeInput, setActiveInput] = useState(false);
   const navigate = useNavigate();
   const [stockItems, setStockItems] = useState<StockItem[]>([]);
+  const [stocksAdded, setStocksAdded] = useState(false);
   const [profileData, setProfileData] = useState<Profile>({
     firstName: "",
     lastName: "",
@@ -89,7 +91,7 @@ export const StockDetails = () => {
   
  let doesStockExist: StockItem | undefined;
 
-const handleStockItems = () => {
+ const handleStockItems = () => {
   doesStockExist = stockItems.find((item) => item.symbol === symbol);
   if (doesStockExist == null) {
     console.log("not found");
@@ -117,9 +119,14 @@ const handleStockItems = () => {
         }
       });
       return updatedStockItems; 
-    })
+    });
   }
+
+  console.log("Stock items added to the portfolio:", volume);
+  setStocksAdded(true);
+  setActiveInput(false);
 };
+
 
 
 
@@ -146,10 +153,12 @@ const handleStockItems = () => {
       <StockChart apiKey={apiKey} symbol={symbol} />
       <StockNews symbol={symbol} />
       <StockFinancials symbol={symbol} />
-      <p style={{ fontSize: "16px" }}>Current volume: {
+      {/* <p style={{ fontSize: "16px" }}>Current volume: {
         (doesStockExist != null ? doesStockExist.volume : 0)
-      }</p>
-      {!addedToPortfolio && (
+      }</p> */}
+       
+       <div>
+      {!addedToPortfolio && !activeInput && (
         <button
           className="add-to-portfolio-btn"
           style={{
@@ -164,27 +173,16 @@ const handleStockItems = () => {
           }}
           onClick={() => {
             setActiveInput(true);
-            if (activeInput) {
-              if (volume > 0 && volume % 1 === 0) {
-                console.log("about to push");
-                handleStockItems();
-              } else {
-                console.log("nah");
-              }
-            }
+            setAddedToPortfolio(true);
           }}
         >
           Add to User Portfolio
         </button>
       )}
+
       {activeInput && (
-        <div
-          style={{ display: "flex", alignItems: "center", marginTop: "10px" }}
-        >
-          <label
-            htmlFor="volume"
-            style={{ fontSize: "16px", marginRight: "10px" }}
-          >
+        <div style={{ display: "flex", alignItems: "center", marginTop: "10px" }}>
+          <label htmlFor="volume" style={{ fontSize: "16px", marginRight: "10px" }}>
             Volume
           </label>
           <button
@@ -201,7 +199,7 @@ const handleStockItems = () => {
           </button>
           <input
             type="number"
-            name=""
+            name="volume"
             id="volume"
             value={volume.toString()}
             min={0}
@@ -227,16 +225,47 @@ const handleStockItems = () => {
           >
             -
           </button>
+
+          <button
+            style={{
+              padding: "5px 10px",
+              fontSize: "16px",
+              backgroundColor: "#ff0000",
+              color: "#fff",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+            onClick={() => {
+              if (volume > 0 && volume % 1 === 0) {
+                console.log("about to push");
+                handleStockItems();
+              } else {
+                console.log("nah");
+              }
+            }}
+          >
+            Add
+          </button>
         </div>
       )}
+
+      {stocksAdded && (
+        <p style={{ fontSize: "16px", marginTop: "10px" }}>
+          {volume} stocks added to your Portfolio
+        </p>
+      )}
+    </div>
+
+
       <button
         className="go-to-home-btn"
         style={{
           marginTop: "10px",
           padding: "10px 20px",
           fontSize: "16px",
-          backgroundColor: "#0000ff",
-          color: "#fff",
+          backgroundColor: "#00008B", // Updated to dark blue color
+          color: "#fff", // Text color remains white
           border: "none",
           borderRadius: "5px",
           cursor: "pointer",
